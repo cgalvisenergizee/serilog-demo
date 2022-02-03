@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace WebApi
 {
@@ -21,6 +17,17 @@ namespace WebApi
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                })
+                // Remove all pre registered loggers
+                .ConfigureLogging(logging =>
+                {
+                    logging.ClearProviders();
+                    logging.SetMinimumLevel(LogLevel.Debug);
+                })
+                // Add Serilog reading data from Microsoft.Extensions.Configuration
+                .UseSerilog((HostBuilderContext context, LoggerConfiguration loggerConfiguration) =>
+                {
+                    loggerConfiguration.ReadFrom.Configuration(context.Configuration);
                 });
     }
 }
