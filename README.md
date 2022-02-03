@@ -9,10 +9,11 @@ mkdir src && cd src
 dotnet new sln -n SerilogDemo
 # Make asp.net project
 dotnet new webapi -n WebApi
-# Add serilog dependency
+# Add serilog dependencies
 dotnet add WebApi/WebApi.csproj package Serilog --version 2.10.0
-# Add serilog Sink dependency
+dotnet add WebApi/WebApi.csproj package Serilog.Settings.Configuration --version 3.3.0
 dotnet add WebApi/WebApi.csproj package Serilog.Sinks.File --version 5.0.0
+dotnet add WebApi/WebApi.csproj package Serilog.AspNetCore --version 4.1.0
 # Add projects to solution
 dotnet sln add WebApi/WebApi.csproj
 # Restore NuGet packages
