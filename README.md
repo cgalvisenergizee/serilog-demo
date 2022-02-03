@@ -1,5 +1,7 @@
 # Save exception logs with Serilog
 
+> some code and steps from [campusmvp.es](https://www.campusmvp.es/recursos/post/como-manejar-trazas-en-net-core-con-serilog.aspx)
+
 ## Make base project
 
 ```bash
@@ -22,8 +24,8 @@ dotnet restore
 rm WebApi/WeatherForecast.cs WebApi/Controllers/WeatherForecastController.cs
 ```
 
-## Add files
+## Watch log file changes
 
 ```bash
-
+watch tail -n 20 src/WebApi/serilog*.txt
 ```

@@ -19,7 +19,16 @@ namespace WebApi.Controllers
         [Route("LogInformation")]
         public string LogInformation()
         {
-            string response = "Hello, Serilog!";
+            string response = "Hello, Serilog! (Information)";
+            _logger.Information($"Returned {response} text.");
+            return response;
+        }
+
+        [HttpGet]
+        [Route("LogDebug")]
+        public string LogDebug()
+        {
+            string response = "Hello, Serilog! (Debug)";
             _logger.Information($"Returned {response} text.");
             return response;
         }
@@ -29,6 +38,15 @@ namespace WebApi.Controllers
         public string LogException()
         {
             throw new Exception("Exception example 1");
+        }
+
+        [HttpGet]
+        [Route("DivideByZero")]
+        public string DivideByZero()
+        {
+            int a = 1;
+            int b = 1;
+            return $"{0/(b-a)}";
         }
     }
 }
